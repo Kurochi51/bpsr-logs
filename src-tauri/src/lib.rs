@@ -194,8 +194,8 @@ fn setup_logs(app: &tauri::AppHandle) -> tauri::Result<()> {
                        }),
                    ])
                    .timezone_strategy(tauri_plugin_log::TimezoneStrategy::UseLocal)
-                   .rotation_strategy(tauri_plugin_log::RotationStrategy::KeepSome(10)) // keep the last 10 logs
-                   .max_file_size(1_073_741_824 /* 1 gb */)
+                   .rotation_strategy(tauri_plugin_log::RotationStrategy::KeepSome(2)) // keep the last 10 logs
+                   .max_file_size(52_428_800 /* 1 gb */)
                    .build())?;
     Ok(())
 }
