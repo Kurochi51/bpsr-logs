@@ -67,13 +67,13 @@ pub fn run() {
 
             // Check app updates
             // https://v2.tauri.app/plugin/updater/#checking-for-updates
-            #[cfg(not(debug_assertions))] // <- Only check for updates on release builds
+            /*#[cfg(not(debug_assertions))] // <- Only check for updates on release builds
             {
                 let handle = app.handle().clone();
                 tauri::async_runtime::spawn(async move {
                     update(handle).await.unwrap();
                 });
-            }
+            }*/
 
             let app_handle = app.handle().clone();
 
@@ -94,7 +94,6 @@ pub fn run() {
         .on_window_event(on_window_event_fn)
         .plugin(tauri_plugin_autostart::init(MacosLauncher::LaunchAgent, Some(vec![])))
         .plugin(tauri_plugin_clipboard_manager::init()) // used to read/write to the clipboard
-        .plugin(tauri_plugin_updater::Builder::new().build()) // used for auto updating the app
         .plugin(tauri_plugin_window_state::Builder::default().build()) // used to remember window size/position https://v2.tauri.app/plugin/window-state/
         .plugin(tauri_plugin_single_instance::init(|_app, _argv, _cwd| {})) // used to enforce only 1 instance of the app https://v2.tauri.app/plugin/single-instance/
         .plugin(tauri_plugin_svelte::init()); // used for settings file
@@ -150,7 +149,7 @@ fn remove_windivert() {
     }
 }
 
-#[cfg(not(debug_assertions))]
+/*#[cfg(not(debug_assertions))]
 async fn update(app: tauri::AppHandle) -> tauri_plugin_updater::Result<()> {
     use tauri_plugin_updater::UpdaterExt;
 
@@ -172,7 +171,7 @@ async fn update(app: tauri::AppHandle) -> tauri_plugin_updater::Result<()> {
         app.restart();
     }
     Ok(())
-}
+}*/
 
 fn setup_logs(app: &tauri::AppHandle) -> tauri::Result<()> {
     let app_version = &app.package_info().version;
