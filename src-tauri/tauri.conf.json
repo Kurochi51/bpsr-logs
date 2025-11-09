@@ -50,7 +50,6 @@
         "resources": [
             "./WinDivert.dll",
             "./WinDivert64.sys"
-        ],
-        "createUpdaterArtifacts": true
+        ]
     }
 }
