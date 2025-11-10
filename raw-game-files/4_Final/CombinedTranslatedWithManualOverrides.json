@@ -403,6 +403,7 @@
         },
         "skill_names_Clean.json": {
             "ChineseShort": "寒冰射线",
+            "EnglishShort": "Frostbeam",
             "AIEnglishShort": "Ice ray"
         },
         "EnglishShortManualOverride": null,
@@ -488,6 +489,7 @@
         },
         "skill_names_Clean.json": {
             "ChineseShort": "浪潮汇聚-水龙卷",
+            "EnglishShort": "Tidepool",
             "AIEnglishShort": "The convergence of the waves-water tornado"
         },
         "EnglishShortManualOverride": null,

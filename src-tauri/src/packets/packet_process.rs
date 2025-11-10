@@ -102,10 +102,10 @@ pub async fn process_packet(
                         continue;
                     }
                 };
-                if reader.remaining() == 0 {
+                /*if reader.remaining() == 0 {
                     debug!("FrameDown: reader.remaining() == 0");
                     break;
-                }
+                }*/
 
                 let nested_packet = reader.read_remaining();
                 if is_zstd_compressed != 0 {

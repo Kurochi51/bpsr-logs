@@ -177,7 +177,7 @@ fn setup_logs(app: &tauri::AppHandle) -> tauri::Result<()> {
     let app_version = &app.package_info().version;
     let pst_time = chrono::Utc::now()
         .with_timezone(&chrono_tz::America::Los_Angeles)
-        .format("%m-%d-%Y %H_%M_%S")
+        .format("%m-%d-%Y")
         .to_string();
     let log_file_name = format!("log v{app_version} {pst_time} PST", );
 

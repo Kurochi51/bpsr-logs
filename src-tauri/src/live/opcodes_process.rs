@@ -15,9 +15,7 @@ pub fn on_server_change(encounter: &mut Encounter) {
     info!("on server change");
     
     // This can arrive after packets::opcodes::Pkt::ServerChangeInfo and would otherwise wipe that data
-    //encounter.clone_from(&Encounter::default());
-    
-    encounter.reset_stats();
+    encounter.clone_from(&Encounter::default());
 }
 
 pub fn process_sync_near_entities(
@@ -49,6 +47,8 @@ pub fn process_sync_container_data(
     encounter: &mut Encounter,
     sync_container_data: blueprotobuf::SyncContainerData,
 ) -> Option<()> {
+    // sync only on container data packet?
+    // encounter.clone_from(&Encounter::default());
     let v_data = sync_container_data.v_data?;
     let player_uid = v_data.char_id?;
 
@@ -175,10 +175,10 @@ pub fn process_aoi_sync_delta(
             attacker_entity.total_heal += actual_value;
             skill.hits += 1;
             skill.total_value += actual_value;
-            trace!(
+            /*trace!(
                 "heal packet: {attacker_uid} to {target_uid}: {actual_value} heal {} total heal",
                 skill.total_value
-            );
+            );*/
         } else {
             let skill = attacker_entity
                 .skill_uid_to_dmg_skill
@@ -206,10 +206,10 @@ pub fn process_aoi_sync_delta(
             attacker_entity.total_dmg += actual_value;
             skill.hits += 1;
             skill.total_value += actual_value;
-            trace!(
+            /*trace!(
                 "dmg packet: {attacker_uid} to {target_uid}: {actual_value} dmg {} total dmg",
                 skill.total_value
-            );
+            );*/
         }
     }
 

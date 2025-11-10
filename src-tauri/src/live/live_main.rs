@@ -32,6 +32,7 @@ pub async fn start(app_handle: AppHandle) {
         // error!("Received Pkt {op:?}");
         match op {
             packets::opcodes::Pkt::ServerChangeInfo => {
+                info!("received server change info");
                 let encounter_state = app_handle.state::<EncounterMutex>();
                 let mut encounter_state = encounter_state.lock().unwrap();
                 on_server_change(&mut encounter_state);
@@ -56,7 +57,7 @@ pub async fn start(app_handle: AppHandle) {
             }
             packets::opcodes::Pkt::SyncContainerData => {
                 // info!("Received {op:?}");
-                // info!("Received {op:?} and data {data:?}");
+                // info!("Received SyncContainerData {op:?} and data {data:?}");
                 // trace!("Received {op:?} and data {data:?}");
                 let sync_container_data =
                     match blueprotobuf::SyncContainerData::decode(Bytes::from(data)) {
@@ -66,6 +67,10 @@ pub async fn start(app_handle: AppHandle) {
                             continue;
                         }
                     };
+                let scene_data = sync_container_data.clone().v_data.unwrap().scene_data.unwrap();
+                info!("Received SyncContainerData {:?} | {:?}",
+                    scene_data.map_id.unwrap_or(0),
+                    scene_data.scene_area_id.unwrap_or(0));
                 let encounter_state = app_handle.state::<EncounterMutex>();
                 let mut encounter_state = encounter_state.lock().unwrap();
                 encounter_state.local_player = sync_container_data.clone();
