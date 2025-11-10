@@ -123,7 +123,7 @@ pub async fn process_packet(
                 }
             }
             _ => {
-                debug!("Unknown fragment type: {msg_type_id}");
+                //debug!("Unknown fragment type: {msg_type_id}");
                 continue;
             }
         }

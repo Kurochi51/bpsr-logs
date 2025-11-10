@@ -179,7 +179,7 @@ fn setup_logs(app: &tauri::AppHandle) -> tauri::Result<()> {
         .with_timezone(&chrono_tz::America::Los_Angeles)
         .format("%m-%d-%Y")
         .to_string();
-    let log_file_name = format!("log v{app_version} {pst_time} PST", );
+    let log_file_name = format!("log v{app_version} {pst_time}", );
 
     app.plugin(tauri_plugin_log::Builder::new() // https://v2.tauri.app/plugin/logging/
                    .clear_targets()
