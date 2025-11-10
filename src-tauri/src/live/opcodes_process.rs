@@ -2,7 +2,7 @@ use crate::live::opcodes_models::class::{
     get_class_id_from_spec, get_class_spec_from_skill_id, ClassSpec,
 };
 use crate::live::opcodes_models::{
-    attr_type, Encounter, Entity, Skill, MONSTER_NAMES, MONSTER_NAMES_CROWDSOURCE,
+    attr_type, Encounter, Entity, Skill, MONSTER_NAMES, MONSTER_NAMES_CROWDSOURCE
 };
 use crate::packets::utils::BinaryReader;
 use blueprotobuf_lib::blueprotobuf;
@@ -13,7 +13,11 @@ use std::time::{SystemTime, UNIX_EPOCH};
 
 pub fn on_server_change(encounter: &mut Encounter) {
     info!("on server change");
-    encounter.clone_from(&Encounter::default());
+    
+    // This can arrive after packets::opcodes::Pkt::ServerChangeInfo and would otherwise wipe that data
+    //encounter.clone_from(&Encounter::default());
+    
+    encounter.reset_stats();
 }
 
 pub fn process_sync_near_entities(
