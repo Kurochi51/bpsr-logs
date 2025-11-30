@@ -24,6 +24,10 @@ declare module '@tanstack/table-core' {
 // TODO: add tooltips - maybe change all these components to snippets instead?
 // `meta` is being used for css class styling (per column)
 const dpsPlayersColumnHelper = createColumnHelper<PlayerRow>();
+const dpsSkillsColumnHelper = createColumnHelper<SkillRow>();
+const healPlayersColumnHelper = createColumnHelper<PlayerRow>();
+const healSkillsColumnHelper = createColumnHelper<SkillRow>();
+
 export const dpsPlayersColumnDefs = [
   dpsPlayersColumnHelper.display({
     id: 'playerInfo',
@@ -53,6 +57,16 @@ export const dpsPlayersColumnDefs = [
     }
   }),
 
+  dpsPlayersColumnHelper.accessor('healTotalValue', {
+    header: 'Heal',
+    cell: ({ cell }) => renderComponent(AbbreviatedNumber, { num: cell.getValue() }),
+    meta: {
+      class: "w-12",
+      label: "Heal",
+      description: "Show player's total heal given"
+    }
+  }),
+
   dpsPlayersColumnHelper.accessor('valuePerSec', {
     header: 'DPS',
     cell: ({ cell }) => renderComponent(AbbreviatedNumber, { num: cell.getValue() }),
@@ -60,6 +74,16 @@ export const dpsPlayersColumnDefs = [
       class: "w-12",
       label: "DPS",
       description: "Show player's damage per second"
+    }
+  }),
+
+  dpsPlayersColumnHelper.accessor('healValuePerSec', {
+    header: 'HPS',
+    cell: ({ cell }) => renderComponent(AbbreviatedNumber, { num: cell.getValue() }),
+    meta: {
+      class: "w-12",
+      label: "HPS",
+      description: "Show player's heal per second"
     }
   }),
 
@@ -134,7 +158,6 @@ export const dpsPlayersColumnDefs = [
   }),
 ];
 
-const dpsSkillsColumnHelper = createColumnHelper<SkillRow>();
 export const dpsSkillsColumnDefs = [
   dpsSkillsColumnHelper.display({
     id: 'skillName',
@@ -161,12 +184,32 @@ export const dpsSkillsColumnDefs = [
   }),
 
   dpsSkillsColumnHelper.accessor('valuePerSec', {
-    header: 'DPS',
+    header: 'HPS',
     cell: ({ cell }) => renderComponent(AbbreviatedNumber, { num: cell.getValue() }),
     meta: {
       class: "w-12",
-      label: "DPS",
-      description: "Show skill's damage per second"
+      label: "HPS",
+      description: "Show player's heal per second"
+    }
+  }),
+
+  dpsPlayersColumnHelper.accessor('healTotalValue', {
+    header: 'Heal',
+    cell: ({ cell }) => renderComponent(AbbreviatedNumber, { num: cell.getValue() }),
+    meta: {
+      class: "w-12",
+      label: "Heal",
+      description: "Show player's total heal given"
+    }
+  }),
+
+  dpsPlayersColumnHelper.accessor('healValuePerSec', {
+    header: 'HPS',
+    cell: ({ cell }) => renderComponent(AbbreviatedNumber, { num: cell.getValue() }),
+    meta: {
+      class: "w-12",
+      label: "HPS",
+      description: "Show player's heal per second"
     }
   }),
 
@@ -241,7 +284,6 @@ export const dpsSkillsColumnDefs = [
   }),
 ];
 
-const healPlayersColumnHelper = createColumnHelper<PlayerRow>();
 export const healPlayersColumnDefs = [
   healPlayersColumnHelper.display({
     id: 'playerInfo',
@@ -262,6 +304,26 @@ export const healPlayersColumnDefs = [
   }),
 
   healPlayersColumnHelper.accessor('totalValue', {
+    header: 'DMG',
+    cell: ({ cell }) => renderComponent(AbbreviatedNumber, { num: cell.getValue() }),
+    meta: {
+      class: "w-12",
+      label: "DMG",
+      description: "Show skill's total damage dealt"
+    }
+  }),
+
+  healPlayersColumnHelper.accessor('valuePerSec', {
+    header: 'DPS',
+    cell: ({ cell }) => renderComponent(AbbreviatedNumber, { num: cell.getValue() }),
+    meta: {
+      class: "w-12",
+      label: "HPS",
+      description: "Show player's heal per second"
+    }
+  }),
+
+  healPlayersColumnHelper.accessor('healTotalValue', {
     header: 'Heal',
     cell: ({ cell }) => renderComponent(AbbreviatedNumber, { num: cell.getValue() }),
     meta: {
@@ -271,7 +333,7 @@ export const healPlayersColumnDefs = [
     }
   }),
 
-  healPlayersColumnHelper.accessor('valuePerSec', {
+  healPlayersColumnHelper.accessor('healValuePerSec', {
     header: 'HPS',
     cell: ({ cell }) => renderComponent(AbbreviatedNumber, { num: cell.getValue() }),
     meta: {
@@ -352,7 +414,6 @@ export const healPlayersColumnDefs = [
   }),
 ];
 
-const healSkillsColumnHelper = createColumnHelper<SkillRow>();
 export const healSkillsColumnDefs = [
   healSkillsColumnHelper.display({
     id: 'skillName',
@@ -368,23 +429,43 @@ export const healSkillsColumnDefs = [
     }
   }),
 
-  healSkillsColumnHelper.accessor('totalValue', {
-    header: 'Heal',
+  healPlayersColumnHelper.accessor('totalValue', {
+    header: 'DMG',
     cell: ({ cell }) => renderComponent(AbbreviatedNumber, { num: cell.getValue() }),
     meta: {
       class: "w-12",
-      label: "Heal",
-      description: "Show skill's total heal given"
+      label: "DMG",
+      description: "Show skill's total damage dealt"
     }
   }),
 
-  healSkillsColumnHelper.accessor('valuePerSec', {
+  healPlayersColumnHelper.accessor('valuePerSec', {
     header: 'HPS',
     cell: ({ cell }) => renderComponent(AbbreviatedNumber, { num: cell.getValue() }),
     meta: {
       class: "w-12",
       label: "HPS",
-      description: "Show skill's heal per second"
+      description: "Show player's heal per second"
+    }
+  }),
+
+  healPlayersColumnHelper.accessor('healTotalValue', {
+    header: 'Heal',
+    cell: ({ cell }) => renderComponent(AbbreviatedNumber, { num: cell.getValue() }),
+    meta: {
+      class: "w-12",
+      label: "Heal",
+      description: "Show player's total heal given"
+    }
+  }),
+
+  healPlayersColumnHelper.accessor('healValuePerSec', {
+    header: 'HPS',
+    cell: ({ cell }) => renderComponent(AbbreviatedNumber, { num: cell.getValue() }),
+    meta: {
+      class: "w-12",
+      label: "HPS",
+      description: "Show player's heal per second"
     }
   }),
 

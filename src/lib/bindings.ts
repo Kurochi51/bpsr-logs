@@ -88,7 +88,7 @@ async getTestSkillWindow(playerUid: string) : Promise<Result<SkillsWindow, strin
 /** user-defined types **/
 
 export type HeaderInfo = { totalDps: number; totalDmg: number; elapsedMs: number; timeLastCombatPacketMs: number }
-export type PlayerRow = { uid: number; abilityScore: number; className: string; classSpecName: string; name: string; totalValue: number; valuePerSec: number; valuePct: number; critRate: number; critValueRate: number; luckyRate: number; luckyValueRate: number; hits: number; hitsPerMinute: number }
+export type PlayerRow = { uid: number; abilityScore: number; className: string; classSpecName: string; name: string; totalValue: number; valuePerSec: number; healTotalValue: number; healValuePerSec: number; valuePct: number; critRate: number; critValueRate: number; luckyRate: number; luckyValueRate: number; hits: number; hitsPerMinute: number }
 export type PlayersWindow = { playerRows: PlayerRow[]; localPlayerUid: number; topValue: number }
 export type SkillRow = { uid: number; name: string; totalValue: number; valuePerSec: number; valuePct: number; critRate: number; critValueRate: number; luckyRate: number; luckyValueRate: number; hits: number; hitsPerMinute: number }
 export type SkillsWindow = { inspectedPlayer: PlayerRow; skillRows: SkillRow[]; localPlayerUid: number; topValue: number }

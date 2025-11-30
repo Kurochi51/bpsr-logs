@@ -32,6 +32,8 @@ pub struct PlayerRow {
     // Stats
     pub total_value: f64,
     pub value_per_sec: f64,
+    pub heal_total_value: f64,
+    pub heal_value_per_sec: f64,
     pub value_pct: f64,
     pub crit_rate: f64,
     pub crit_value_rate: f64,

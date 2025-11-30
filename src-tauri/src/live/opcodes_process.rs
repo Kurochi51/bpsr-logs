@@ -213,7 +213,7 @@ fn process_player_attrs(player_entity: &mut Entity, player_uid: i64, attrs: Vec<
                 let player_name_result = BinaryReader::from(raw_bytes).read_string();
                 if let Ok(player_name) = player_name_result {
                     player_entity.name = Some(player_name.clone());
-                    info!("Found player {player_name} with UID {player_uid}");
+                    info!("Found player {player_name} with UID {player_uid} | attr_id: {attr_id} ");
                 } else {
                     warn!("Failed to read player name for UID {player_uid}");
                 }

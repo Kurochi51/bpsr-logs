@@ -6,6 +6,8 @@ const IS_WIN_11 = parseInt(version().split(".")[2] || "0", 10) >= 22000;
 export const DEFAULT_STATS = {
   totalValue: true,
   valuePerSec: true,
+  healTotalValue: true,
+  healValuePerSec: true,
   valuePct: true,
   critRate: true,
   critValueRate: true,
